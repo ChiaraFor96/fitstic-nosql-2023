@@ -1,9 +1,13 @@
+.pptx
+.ppt
+*.solution.*
+*.test.*
+!dummy.test.js
 kv_database
 foodmart.sql
 .idea
 *.iml
 *.bson
-slides/*.pdf
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,java,scala,linux,macos,python,kotlin,windows,intellij,libreoffice,microsoftoffice
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,java,scala,linux,macos,python,kotlin,windows,intellij,libreoffice,microsoftoffice
