@@ -211,3 +211,118 @@
       SELECT *
       FROM videos_count_by_tag
       WHERE tag = 'You Are Awesome';
+
+
+### Exercise 6
+
+- Modulare la relazione tra video e attori, considerate due query
+  - Q1: restituire i video in cui compare un dato attore (a partire dal più recente)
+  - Q2: restituire i video di un dato genere (a partire dal più recente)
+  - Video 
+
+    | Column name | Data type |
+    |-|-|
+    |video_id|timeuuid|
+    |added_data|timestamp|
+    |description|text|
+    |encoding|video_encoding|
+    |tags|set\<text>|
+    |title|text|
+    |user_id|uuid|
+
+  - Attori
+
+    | Column name | Data type |
+    |-|-|
+    |actor|text|
+    |character|text|
+    |genre|text|
+
+        CREATE TABLE videos_by_actor ( 
+            actor text, 
+            added_date timestamp,
+            video_id timeuuid,  
+            character_name text,
+            description text,
+            encoding frozen<video_encoding>,
+            tags set<text>, 
+            title text, 
+            user_id uuid,
+            PRIMARY KEY ((actor), added_date, video_id, character_name) 
+        ) WITH CLUSTERING ORDER BY (added_date DESC, video_id ASC, character_name ASC);
+
+        COPY videos_by_actor 
+        FROM '/root/labwork/exercise-7/videos_by_actor.csv' 
+        WITH HEADER=true;
+
+        SELECT * 
+        FROM videos_by_actor 
+        WHERE actor = 'Tom Hanks';
+
+        SELECT actor, added_date
+        FROM videos_by_actor 
+        WHERE actor = 'Tom Hanks';
+
+        CREATE TABLE videos_by_genre ( 
+            genre text, 
+            added_date timestamp,
+            video_id timeuuid, 
+            description text,
+            encoding frozen<video_encoding>,
+            tags set<text>, 
+            title text, 
+            user_id uuid,
+            PRIMARY KEY ((genre), added_date, video_id) 
+        ) WITH CLUSTERING ORDER BY (added_date DESC, video_id ASC);
+
+        COPY videos_by_genre 
+        FROM '/root/labwork/exercise-7/videos_by_genre.csv' 
+        WITH HEADER=true;
+
+        SELECT * 
+        FROM videos_by_genre 
+        WHERE genre = 'Time travel';
+
+### Final exercise
+
+- Aprire lo script `/root/labwork/exercise-16/killrvideo.cql`. Nelle prime 4 tabelle, inserire il tipo di dato corretto al posto di "CQL TYPE"
+
+- Eseguire lo script
+
+      SOURCE '/root/labwork/exercise-16/killrvideo.cql';
+
+- Popolare le tabelle
+
+      USE killr_video;
+      COPY videos FROM '/root/labwork/exercise-16/videos.csv' WITH HEADER=true AND MINBATCHSIZE=1 AND MAXBATCHSIZE=1 AND PAGESIZE=10; -- per evitare errore PicklingError
+      COPY latest_videos FROM '/root/labwork/exercise-16/latest_videos.csv' WITH HEADER=true;
+      COPY trailers_by_video FROM '/root/labwork/exercise-16/trailers_by_video.csv' WITH HEADER=true;
+      COPY actors_by_video FROM '/root/labwork/exercise-16/actors_by_video.csv' WITH HEADER=true;
+
+- Query: visualizzare i 50 video più recenti dalla tabella latest_videos. Cercare l'ID del film `Gone Girl` ("L'amore bugiardo")
+
+      SELECT * FROM latest_videos LIMIT 50;
+
+- Query: visualizzare i dati del film dalla tabella `videos`. Quando è stato rilasciato il film? A quali generi appartiene?
+
+      SELECT *
+      FROM videos 
+      WHERE video_id = 8a657435-0ef2-11e5-91b1-8438355b7e3a;
+
+- Query: visualizzare gli attori coinvolti nel film e i personaggi da loro interpretati dalla tabella `actors_by_video`. Quale attore ha interpretato il personaggio `Desi Collings`?
+
+      SELECT *
+      FROM actors_by_video 
+      WHERE video_id = 8a657435-0ef2-11e5-91b1-8438355b7e3a;
+
+- Query: cercare il trailer del film dalla tabella `trailers_by_video`. Il trailer_id è un ID che riconduce alla tabella `videos`
+
+      SELECT *
+      FROM trailers_by_video 
+      WHERE video_id = 8a657435-0ef2-11e5-91b1-8438355b7e3a;
+
+- Query: visualizzare i dati del trailer dalla tabella `videos`
+
+      SELECT *
+      FROM videos
+      WHERE video_id = 8a65751c-0ef2-11e5-9cac-8438355b7e3a;
