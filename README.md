@@ -81,8 +81,8 @@ If Windows complains about:
 - Lecture 01 (4h): Introduction to NoSQL databases (until slide 48) and start software installation
 - Lecture 02 (4h): Introduction to NoSQL databases and software installation, Cassandra
 - Lecture 03 (4h): [Test teoria](https://docs.google.com/forms/d/e/1FAIpQLSeTSG2jmfWMqMkOz8F7mXLBDmpOwj2g9sP8IwEnAc1jlIuU4w/viewform?usp=sf_link), Cassandra
-- Lecture 04 (4h): Cassandra, Neo4J
-- Lecture 05 (4h): Test Cassandra, Neo4J
+- Lecture 04 (4h): Cassandra
+- Lecture 05 (4h): [Test Cassandra](https://docs.google.com/forms/d/e/1FAIpQLSeZOYSrdDgo_Q-S0LSoCsSJTLfm28ADK95_FM0PqRfn81_Ofw/viewform), Neo4J
 - Lecture 06 (4h): Neo4J, MongoDB Find
 - Lecture 07 (4h): Test Neo4J, MongoDB Find
 - Lecture 08 (2h): Test MongoDB, ...
