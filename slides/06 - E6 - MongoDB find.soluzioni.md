@@ -105,7 +105,16 @@
     db.yelpbusiness.find({categories: ["Grocery", "Food"]})
 
     db.yelpbusiness.find({"categories": {"$size": 2}, "categories": ["Grocery", "Food"]})
+
     ```
+
+    In questo caso vengono restituiti i business anche oggetti con l'array ["Food", "Grocery"] e non solo ["Grocery", "Food"], nelle query precendenti solo ["Grocery", "Food"].
+    L'AND è implicito poichè viene fatto all'interno della stessa clausola.
+
+    ```
+    db.yelpbusiness.find({categories: {$all: ["Grocery", "Food"], $size: 2}})
+    ```
+
 
 17. Visualizzare tutti i business che hanno 5 categorie 
 
