@@ -84,5 +84,5 @@ If Windows complains about:
 - Lecture 04 (4h): Cassandra
 - Lecture 05 (4h): [Test Cassandra](https://docs.google.com/forms/d/e/1FAIpQLSeZOYSrdDgo_Q-S0LSoCsSJTLfm28ADK95_FM0PqRfn81_Ofw/viewform), Neo4J
 - Lecture 06 (4h): Neo4J, MongoDB Find
-- Lecture 07 (4h): Test Neo4J, MongoDB Find
-- Lecture 08 (2h): Test MongoDB, ...
+- Lecture 07 (4h): [Test Neo4J](https://docs.google.com/forms/d/e/1FAIpQLSewuBHzGKbxd93FYckcjFCidFhqYjEpOgRLsgxm6eeJWYlqtA/viewform), MongoDB Find
+- Lecture 08 (2h): [Test MongoDB](https://docs.google.com/forms/d/1Rr714lpVjbN2j_CXrb9XS0fodF19d5ZisP6HU_1ltQk/edit#responses), Approfondimenti Mongo
